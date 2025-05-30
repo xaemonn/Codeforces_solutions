@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define gc getchar_unlocked
+#define fo(i, n) for (i = 0; i < n; i++)
+#define Fo(i, k, n) for (i = k; k < n ? i < n : i > n; k < n ? i += 1 : i -= 1)
+#define si(x) scanf("%d", &x)
+#define sl(x) scanf("%lld", &x)
+#define ss(s) scanf("%s", s)
+#define pi(x) printf("%d\n", x)
+#define pl(x) printf("%lld\n", x)
+#define ps(s) printf("%s\n", s)
+#define deb(x) cout << #x << "=" << x << endl
+#define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define all(x) x.begin(), x.end()
+#define clr(x) memset(x, 0, sizeof(x))
+#define sortall(x) sort(all(x))
+#define tr(it, a) for (auto it = a.begin(); it != a.end(); it++)
+#define PI 3.1415926535897932384626
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pl;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pii> vpii;
+typedef vector<pl> vpl;
+typedef vector<vi> vvi;
+
+const int N = 1e7;
+vector<bool> isprime(N + 1, true);
+vector<int> primes;
+
+void solve()
+{
+    int n;
+    cin >> n;
+    long long target;
+    cin >> target;
+    map<ll, ll> mp;
+    vl v(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+        mp[v[i]]++;
+    }
+    if (n == 1)
+    {
+        if (v[0] == target)
+        {
+            cout << "YES" << endl;
+            return;
+        }
+        else
+        {
+            cout << "NO" << endl;
+        }
+        return;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        long long val = target + v[i];
+
+        mp[v[i]]--;
+        if (mp[v[i]] == 0)
+        {
+            mp.erase(v[i]);
+        }
+        if (mp[val] >= 1)
+        {
+            cout << "YES" << endl;
+            return;
+        }
+        mp[v[i]]++;
+    }
+    cout << "NO" << endl;
+}
+
+int main()
+{
+
+    ios_base::sync_with_stdio(false); // ye add imp
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+}
