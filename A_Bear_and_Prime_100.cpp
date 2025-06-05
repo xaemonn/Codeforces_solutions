@@ -11,31 +11,43 @@ bool isprime(int x){
     return true;
 }
 
-bool divisible(int a){
-    cout << a << endl;
+
+string ask(int num){
+    cout << num << endl;
     string s;
     cin >> s;
-    if(s=="yes" || s=="Yes")
-        return true;
-    else
-        return false;
+    return s;
 }
+
 
 void solve(){
     int cnt = 0;
-    for (int i = 2; i <= 50 && cnt < 2; i++){
-        if(isprime(i))
-        {if(divisible(i)){
-            cnt++;
-            if(i*i<=100 && divisible(i*i)){
-                cnt++;
-            }
-        }}
+    vector<int> v = {4, 9, 25, 49};
+    for (int i = 0; i < 4;i++){
+        string s=ask(v[i]);
+        if(s=="yes"){
+            cout << "composite" << endl;
+            return;
+        }
     }
-    if(cnt>=2){
-        cout << "composite" << endl;
-    }else
-        cout << "prime" << endl;
+
+        for (int i = 2; i < 50; i++)
+        {
+            if (isprime(i))
+            {
+                string s = ask(i);
+                if (s == "yes")
+                {
+                    cnt++;
+                }
+            }
+        }
+
+        if(cnt>=2){
+            cout << "composite" << endl;
+        }else{
+            cout << "prime" << endl;
+        }
 }
 
 int main(){
